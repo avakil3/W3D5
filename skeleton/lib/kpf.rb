@@ -5,6 +5,7 @@ class KnightPathFinder
     def initialize(starting_position)
         @root_node = PolyTreeNode.new(starting_position)
         @considered_positions = [starting_position]
+        build_move_tree(@root_node)
     end
 
     # This method will check to see if the given position [#,#] can be reached from the current position of the King
@@ -33,8 +34,20 @@ class KnightPathFinder
         selected_moves
     end
 
+    def build_move_tree(root_node)
+        q = [root_node]
 
-
+        while !q.empty?
+            node = q.shift
+            positions = new_move_positions(node.value)
+            positions.each do |pos|
+               new_node = PolyTreeNode.new(pos)
+               node.add_child(new_node)
+            end
+            q+= node.children
+        end
+        root_node
+    end
 
     
 

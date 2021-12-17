@@ -48,9 +48,5 @@ class PolyTreeNode
     end
 end
 
-    
-
-
-
 
 # end 
